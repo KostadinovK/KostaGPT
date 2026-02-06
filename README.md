@@ -37,10 +37,10 @@ source .venv/bin/activate
 
 ## Running the API
 
-Start the API service (example — adjust to the actual command in `api/main.py`):
+Start the API service:
 
 ```bash
-python api/main.py
+python -m uvicorn main:app --reload
 ```
 
 ## Example usage
