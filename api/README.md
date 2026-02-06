@@ -31,7 +31,7 @@ hf auth login
 ## Starting the Dev Server
 Run
 ```bash
-fastapi dev main.py
+python -m uvicorn main:app --reload
 ```
 
 ## Running just the Gemma service (for test purposes)

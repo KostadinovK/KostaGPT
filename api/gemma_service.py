@@ -29,20 +29,23 @@ class GemmaService:
         print("Model and tokenizer loaded successfully!")
     
     def generate_response(
-        self, 
-        messages: List[Dict[str, str]], 
+        self,
+        prompt: str,
         max_new_tokens: int = 40
     ) -> str:
         """
-        Generate a response from the model given a list of messages.
-        
+        Generate a response from the model given a single user prompt string.
+
         Args:
-            messages: List of message dictionaries with 'role' and 'content' keys
+            prompt: The user's prompt text to send to the model.
             max_new_tokens: Maximum number of tokens to generate (default: 40)
-        
+
         Returns:
             The generated response text
         """
+        # Build messages list from a single user prompt
+        messages = [{"role": "user", "content": prompt}]
+
         inputs = self._tokenizer.apply_chat_template(
             messages,
             add_generation_prompt=True,
@@ -50,8 +53,8 @@ class GemmaService:
             return_dict=True,
             return_tensors="pt",
         ).to(self._model.device)
-        
+
         outputs = self._model.generate(**inputs, max_new_tokens=max_new_tokens)
         response = self._tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:])
-        
+
         return response

@@ -20,9 +20,10 @@ def main():
     messages = [
         {"role": "user", "content": "Who are you?"},
     ]
-    
-    response = service.generate_response(messages)
-    print(f"User: {messages[0]['content']}")
+    prompt = messages[0]["content"]
+
+    response = service.generate_response(prompt)
+    print(f"User: {prompt}")
     print(f"Gemma: {response}")
     print()
     
@@ -36,9 +37,10 @@ def main():
         {"role": "assistant", "content": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed."},
         {"role": "user", "content": "Can you give me an example?"},
     ]
-    
-    response = service.generate_response(messages, max_new_tokens=60)
-    print(f"User: {messages[-1]['content']}")
+    prompt = messages[-1]["content"]
+
+    response = service.generate_response(prompt, max_new_tokens=60)
+    print(f"User: {prompt}")
     print(f"Gemma: {response}")
     print()
     
@@ -50,9 +52,10 @@ def main():
     messages = [
         {"role": "user", "content": "Explain the concept of neural networks."},
     ]
-    
-    response = service.generate_response(messages, max_new_tokens=100)
-    print(f"User: {messages[0]['content']}")
+    prompt = messages[0]["content"]
+
+    response = service.generate_response(prompt, max_new_tokens=100)
+    print(f"User: {prompt}")
     print(f"Gemma: {response}")
 
 
